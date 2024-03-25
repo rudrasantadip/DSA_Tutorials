@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//UNWEIGHTED GRAPH DATA STRUCTURE IMPLEMENTATION USING AN ADJACENCY LIST
+// TIME COMPLEXITY O(2N)
+
 // Structure of a single node
 typedef struct NODE
 {

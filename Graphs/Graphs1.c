@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//unweighted graph with an adjacency matrix...
+//UNWEIGHTED GRAPH WITH ADJACENCY MATRIX
 // Time Complexity : O(N X N)
 typedef struct graph
 {

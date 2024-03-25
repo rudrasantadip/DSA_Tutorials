@@ -19,6 +19,7 @@ public class Graph
        }
     }
 
+    //For undirected Graph..
     public void addEdge(int sourceV, int destinationV)
     {
         this.adjacencyList.get(sourceV).add(destinationV);
@@ -65,7 +66,7 @@ public class Graph
         g.addEdge(7, 5);
 
 
-        ArrayList<Integer> bfs  =   g.BFS(6);
+        ArrayList<Integer> bfs  =   g.BFS(1);
         System.out.println(bfs);
             
     }

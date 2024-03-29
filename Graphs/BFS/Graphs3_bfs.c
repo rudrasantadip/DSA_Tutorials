@@ -48,30 +48,38 @@ Queue *init_Queue()
 }
 
 // Function to check if the queue is empty
-int isEmpty(Queue* queue) {
+int isEmpty(Queue *queue)
+{
     return (queue->front == NULL);
 }
 
-
 // Function to add an element to the queue
-void enqueue(Queue* queue, int data) {
-    Node* newNode = createNode(data);
-    if (isEmpty(queue)) {
+void enqueue(Queue *queue, int data)
+{
+    Node *newNode = createNode(data);
+    if (isEmpty(queue))
+    {
         queue->front = queue->rear = newNode;
-    } else {
+    }
+    else
+    {
         queue->rear->next = newNode;
         queue->rear = newNode;
     }
 }
 
 // Function to remove an element from the queue
-int dequeue(Queue* queue) {
-    if (isEmpty(queue)) {
+int dequeue(Queue *queue)
+{
+    if (isEmpty(queue))
+    {
         printf("Queue is empty\n");
         return -1;
-    } else {
+    }
+    else
+    {
         int data = queue->front->data;
-        Node* temp = queue->front;
+        Node *temp = queue->front;
         queue->front = queue->front->next;
         free(temp);
         return data;
@@ -80,12 +88,16 @@ int dequeue(Queue* queue) {
 
 void printQ(Queue *queue)
 {
-       if (isEmpty(queue)) {
+    if (isEmpty(queue))
+    {
         printf("Queue is empty\n");
-    } else {
-        Node* temp = queue->front;
+    }
+    else
+    {
+        Node *temp = queue->front;
         printf("Queue elements are:\n");
-        while (temp != NULL) {
+        while (temp != NULL)
+        {
             printf("%d ", temp->data);
             temp = temp->next;
         }
@@ -111,14 +123,13 @@ void add_to_list(LinkedList **ll, int data)
     }
     else
     {
-        Node *temp =(*ll)->head;
-        while (temp->next!=NULL)
+        Node *temp = (*ll)->head;
+        while (temp->next != NULL)
         {
-            temp=temp->next;
+            temp = temp->next;
         }
-        temp->next=newNode;
+        temp->next = newNode;
     }
-
 }
 
 // Printing a linked list...
@@ -191,35 +202,33 @@ LinkedList *bfs(Graph *g)
     int visited[g->V];
     Queue *q = init_Queue();
 
-
     for (i = 0; i < g->V; i++)
     {
         visited[i] = 0;
     }
 
-    i=1;
-    enqueue(q,i);
-    visited[i]=1;
-    while (isEmpty(q)==0)
+    i = 1;
+    enqueue(q, i);
+    visited[i] = 1;
+    while (isEmpty(q) == 0)
     {
         int node = dequeue(q);
-        if(node!=-1)
+        if (node != -1)
         {
-        add_to_list(&solution,node);
-        neighbours = g->array[node];
-        //Storing the ll neighbours head in a temporary variable
-        Node *temp = neighbours->head;
-        while (temp!=NULL)
-        {
-            if(visited[temp->data]==0)
+            add_to_list(&solution, node);
+            neighbours = g->array[node];
+            // Storing the ll neighbours head in a temporary variable
+            Node *temp = neighbours->head;
+            while (temp != NULL)
             {
-                visited[temp->data]=1;
-                enqueue(q,temp->data);
+                if (visited[temp->data] == 0)
+                {
+                    visited[temp->data] = 1;
+                    enqueue(q, temp->data);
+                }
+                temp = temp->next;
             }
-            temp=temp->next;
         }
-        }
-        
     }
     return solution;
 }

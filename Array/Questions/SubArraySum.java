@@ -1,29 +1,54 @@
 /*
- * Given an unsorted array A of size N that contains only positive integers,
- *  find a continuous sub-array that adds to a given number S 
- * and return the left and right index(1-based indexing) of that subarray.
-In case of multiple subarrays, return the subarray indexes 
-which come first on moving from left to right.
-Note:- You have to return an ArrayList consisting of two elements left and right. In case no such subarray exists return an array consisting of element -1.
+ * Indexes of Subarray Sum
+ * Given an array arr[] containing only non-negative integers, your task is to
+ * find a continuous subarray (a contiguous sequence of elements) whose sum
+ * equals a specified value target. You need to return the 1-based indices of
+ * the leftmost and rightmost elements of this subarray. You need to find the
+ * first subarray whose sum is equal to the target.
+ * 
+ * Note: If no such array is possible then, return [-1].
  */
 
-import java.util.ArrayList;
-
 public class SubArraySum
-{
-    static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
-    {
-      int i=0,j=1,sum=0;
-      while (i<n)
-      {
-          sum=sum+arr[i];  
-      }  
-       return null;
-    }
+ {
+    public static void main(String[] args) {
+         // Record the start time
+         long startTime = System.nanoTime();
 
-    public static void main(String[] args)
-    {
-        int arr[]={1,2,3,7,5};
-        subarraySum(arr, 5, 12);
-    }    
-}
+
+
+
+         // Your program logic here
+        int arr[]= {1, 2, 3, 7, 5};
+        int start = 0,end =0, n=arr.length;
+        int currSum=0;
+        int target=0;
+        for(end = 0;end<n;end++)
+        {
+            currSum+=arr[end];
+            while(currSum>target && start<=end)
+            {
+                currSum-=arr[start];
+                start++;
+            }
+
+            if(currSum==target)
+            {
+                break;
+            }
+        }
+        System.out.println(start+1);
+        System.out.println(end+1);
+
+
+
+         // Record the end time
+         long endTime = System.nanoTime();
+
+         // Calculate the elapsed time in seconds
+         double durationInSeconds = (endTime - startTime) / 1_000_000_000.0;
+ 
+         System.out.println("Execution Time: " + durationInSeconds + " seconds");
+     }
+    }
+ 
